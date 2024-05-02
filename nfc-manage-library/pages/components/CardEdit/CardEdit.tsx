@@ -69,10 +69,10 @@ function CardEdit({ id_boardgame }: { id_boardgame: any }) {
         <>
             {posts.length > 0 ? (
                 posts.map((post, index) => (
-                    <div key={index} className="grid grid-cols-6 justify-self-start border pt-4 pb-4 border-t-black border-b-black mt-4">
+                    <div key={index} className="grid grid-cols-6 justify-self-start border shadow-black shadow-md rounded-xl pt-4 pb-4  mt-2 bg-white hover:bg-opacity-50">
                         <div className="ml-[15px]"><input type="checkbox" /></div>
                         <div className=" col-span-2 justify-self-center">
-                            <span>
+                            <span className="font-semibold text-[18px]">
                                 {post.title_card}
                             </span>
                         </div>

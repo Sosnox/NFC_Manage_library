@@ -83,7 +83,7 @@ const ManageBoardgame = () => {
   
     return (
       <>
-        <div className="flex items-center justify-center">
+        <div className="flex items-center justify-center bg-gray-900 p-4 rounded-xl text-white">
           <div className="mr-24">
             <input type="file" onChange={handleFileChange} />
             <div className="mt-6">

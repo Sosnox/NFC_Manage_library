@@ -41,19 +41,18 @@ export default function EditGame() {
                     </div>
                 </div>
 
-                <div className="grid grid-cols-6 justify-center items-center pl-4 pr-4 bg-[#6699FF] h-[50px]">
+                <div className="grid grid-cols-6 justify-center items-center pl-4 pr-4 bg-gray-900 border mt-[2px] rounded-b-xl h-[50px]">
                     <div className="col-span-1 justify-self-start"><input type="checkbox" /></div>
                     <div className="col-span-2 justify-self-center"><Search_edit /></div>
-                    <button onClick={() => setOpenPopup(true)} className="p-2 pr-4 pl-4 rounded-md  bg-white col-span-2 justify-self-center hover:bg-gray-400">ADD</button>
+                    <button onClick={() => setOpenPopup(true)} className="p-2 pr-4 pl-4 rounded-md  bg-white col-span-2 justify-self-center hover:bg-gray-400 font-semibold ">ADD</button>
 
                     {openPopup && (
                         <PopupAC setClosePopup={setOpenPopup} id_boardgame={id} />
                     )}
-                    <div className="p-2 pr-4 pl-4 rounded-md bg-white justify-self-end hover:bg-gray-400">DELETE ALL</div>
-
+                    <div className="p-2 pr-4 pl-4 rounded-md bg-white justify-self-end hover:bg-gray-400 font-semibold">DELETE ALL</div>
                 </div>
             </div>
-            <div>
+            <div className=" overflow-y-scroll p-1 h-[600px]">
                 <CardEdit id_boardgame={id} />
             </div>
 

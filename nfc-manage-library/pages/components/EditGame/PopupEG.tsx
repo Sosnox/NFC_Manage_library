@@ -115,12 +115,12 @@ export const PopupEG = ({ id_boardgame, setClosePopup }: InputPopup) => {
     }
 
     return (
-        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 ">
             <div className="bg-white p-8 rounded-lg w-[800px] h-screen">
                 <div className='flex items-center justify-center pb-4'>
                     <img src={previewUrl || "http://210.246.215.173:8000/uploaded_images/" + pathImage} alt={titleGame} width={200} />
                 </div>
-                <div className='flex justify-between items-center mb-4'>
+                <div className='flex justify-between items-center mb-4'>    
                     <MdDriveFileRenameOutline size={30} />
                     <label className="mr-2"> ชื่อเกม </label>
                     <input
