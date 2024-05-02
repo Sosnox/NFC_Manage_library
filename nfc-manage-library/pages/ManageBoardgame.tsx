@@ -84,15 +84,15 @@ const ManageBoardgame = () => {
     return (
       <>
         <div className="flex items-center justify-center">
-          <div className="">
+          <div className="mr-24">
             <input type="file" onChange={handleFileChange} />
             <div className="mt-6">
-              <img src={previewUrl} width={300} />
+              <img src={previewUrl} width={200} />
             </div>
   
           </div>
   
-          <div className="flex flex-col mt-24">
+          <div className="flex flex-col gap-1">
   
             <label>ชื่อเกม :</label>
             <input type="text" placeholder="Title of the Game" value={titleGame} onChange={(e) => setTitleGame(e.target.value)} className="form-info" />
@@ -119,15 +119,15 @@ const ManageBoardgame = () => {
   
             <label>ลิงค์ :</label>
             <input type="text" placeholder="URL to a YouTube video" value={pathYoutube} onChange={(e) => setPathYoutube(e.target.value)} className="form-info" />
-  
+
             <label>เนื้อหา :</label>
-            <textarea placeholder="Details about the Game " value={detailGame} onChange={(e) => setDetailGame(e.target.value)} className="form-info-des"></textarea>
+            <textarea placeholder="Details about the Game " value={detailGame} onChange={(e) => setDetailGame(e.target.value)} className="h-[200px] rounded-lg p-[10px]"></textarea>
   
-            <div className="flex gap-2 mb-10">
+            <div className="flex gap-2 mb-[20px]">
               <input type="checkbox" checked={recommend} onChange={(e) => setRecommend(e.target.checked)} />
-              <label className="translate translate-y-[-2px]">เกมแนะนำ</label>
+              <label className="">เกมแนะนำ</label>
             </div>
-            <button type="button" className="submit-info" onClick={handleSubmit}>
+            <button type="button" className="p-4 rounded-lg bg-green-500 hover:bg-green-400 text-xl font-bold text-white border" onClick={handleSubmit}>
               Submit
             </button>
             {notification}

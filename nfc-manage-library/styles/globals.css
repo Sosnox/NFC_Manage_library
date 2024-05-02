@@ -50,3 +50,14 @@ body {
   object-fit: cover;
   cursor: pointer;
 }
+
+.form-info {
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.form-info-int {
+  padding: 10px;
+  border-radius: 10px;
+  width: 150px;
+}

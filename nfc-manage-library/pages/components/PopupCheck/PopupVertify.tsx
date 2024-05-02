@@ -1,4 +1,5 @@
 import React from "react";
+import { useRouter } from 'next/router'
 
 const endpoint = "http://210.246.215.173:8000/admin/delete_boardgame/";
 interface PopupVertifyProps {
@@ -7,6 +8,7 @@ interface PopupVertifyProps {
 }
 
 export const PopupVertify: React.FC<PopupVertifyProps> = ({ setClosePopup, id_boardgame }) => {
+    const router = useRouter()
     const handleDeleteCard = async () => {
         try {
             const response = await fetch("http://210.246.215.173:8000/admin/delete_boardgame/" + id_boardgame, {
@@ -18,6 +20,7 @@ export const PopupVertify: React.FC<PopupVertifyProps> = ({ setClosePopup, id_bo
 
             if (response.ok) {
                 setClosePopup(false); // Close the popup
+                router.push("/ManageCard")
                 console.log("Card deleted successfully!");
                 
             } else {

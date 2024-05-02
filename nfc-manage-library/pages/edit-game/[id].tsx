@@ -25,38 +25,38 @@ export default function EditGame() {
     }
 
     return (
-        <div className="h-screen ">
+        <>
             <div>
-                <div className="flex flex-col space-y-4 items-center justify-center h-[200px] bg-white">
-                    <button className="pr-16 pl-16 p-4 border border-black rounded-xl text-[18px] flex font-semibold hover:bg-[#FFFACD]" onClick={() => setOpenPopupEG(true)}>Edit Game</button>
-                    {openPopupEG && 
-                     <PopupEG id_boardgame={id} setClosePopup={setOpenPopup}/>
+                <div className="h-[150px] bg-gray-900 rounded-t-lg flex items-center justify-center">
+                    <div className="flex justify-center space-x-10 ">
+                    <button className="p-4 w-[150px] bg-white rounded-xl text-[18px] flex justify-center font-semibold hover:bg-gray-400" onClick={() => setOpenPopupEG(true)}>Edit Game</button>
+                    {openPopupEG &&
+                        <PopupEG id_boardgame={id} setClosePopup={setOpenPopup} />
                     }
-                    <button className="pr-16 pl-16 p-4 border border-black rounded-xl hover:bg-[#FA8072] hover:text-white text-[18px] text-black font-semibold" 
-                    onClick={() => setOpenPopupVerti(true)}>Delete Game</button>
+                    <button className="p-4 w-[150px] bg-white rounded-xl text-[18px] flex justify-center font-semibold hover:bg-gray-400"
+                        onClick={() => setOpenPopupVerti(true)}>Delete Game</button>
                     {openPopupVerti && (
                         <PopupVertify setClosePopup={setOpenPopupVerti} id_boardgame={id} />
                     )}
+                    </div>
                 </div>
 
                 <div className="grid grid-cols-6 justify-center items-center pl-4 pr-4 bg-[#6699FF] h-[50px]">
-                    <div className="col-span-1 justify-self-start"><input type="checkbox"/></div>
+                    <div className="col-span-1 justify-self-start"><input type="checkbox" /></div>
                     <div className="col-span-2 justify-self-center"><Search_edit /></div>
-                    <button onClick={() => setOpenPopup(true)} className="button-edit-nav col-span-2 justify-self-center hover:bg-[#a3e9a4]">Add</button>
+                    <button onClick={() => setOpenPopup(true)} className="p-2 pr-4 pl-4 rounded-md  bg-white col-span-2 justify-self-center hover:bg-gray-400">ADD</button>
 
                     {openPopup && (
                         <PopupAC setClosePopup={setOpenPopup} id_boardgame={id} />
                     )}
-                    <div className="button-edit-nav justify-self-end hover:bg-[#FA8072]">Delete All</div>
+                    <div className="p-2 pr-4 pl-4 rounded-md bg-white justify-self-end hover:bg-gray-400">DELETE ALL</div>
 
                 </div>
             </div>
-
-            <div className="cardgame-container">
-                <div className=" h-screen">
-                    <CardEdit id_boardgame={id} />
-                </div>
+            <div>
+                <CardEdit id_boardgame={id} />
             </div>
-        </div>
+
+        </>
     )
 }
