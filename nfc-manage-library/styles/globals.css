@@ -4,6 +4,8 @@
 
 :root {
   --foreground-rgb: 0, 0, 0;
+  /* --background-start-rgb: 0, 0, 0;
+  --background-end-rgb: 255, 255, 255; */
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
 }
@@ -19,7 +21,7 @@
 body {
   color: rgb(var(--foreground-rgb));
   background: linear-gradient(
-      to bottom,
+      to right,
       transparent,
       rgb(var(--background-end-rgb))
     )
@@ -30,4 +32,31 @@ body {
   .text-balance {
     text-wrap: balance;
   }
+}
+
+
+.game-menu {
+  background-color: white;
+  box-shadow: 0px 7px 5px rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+}
+
+.game-menu img {
+  width: 150px;
+  height: 150px;
+  border: 1px solid black;
+  border-radius: 1rem;
+  object-fit: cover;
+  cursor: pointer;
+}
+
+.form-info {
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.form-info-int {
+  padding: 10px;
+  border-radius: 10px;
+  width: 150px;
 }
