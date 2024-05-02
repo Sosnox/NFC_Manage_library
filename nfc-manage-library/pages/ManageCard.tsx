@@ -8,7 +8,9 @@ const ManageCard = () => {
                 <div className="mt-24 mb-24">
                     <Search_games />
                 </div>
-                <AddGameCard />
+                <div className=" overflow-y-scroll max-h-[600px]">
+                    <AddGameCard />
+                </div>
             </div>
         </>
     );
