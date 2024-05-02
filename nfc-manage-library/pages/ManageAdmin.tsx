@@ -1,7 +1,9 @@
+import { useState } from "react";
+
 const ManageAdmin = () => {
-    return (
+    return(
         <div>
-            <h1>Manage Admin</h1>
+            mage
         </div>
     )
 }
