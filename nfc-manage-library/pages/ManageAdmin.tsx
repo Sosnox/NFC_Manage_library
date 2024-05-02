@@ -3,7 +3,7 @@ import { useState } from "react";
 const ManageAdmin = () => {
     return(
         <div>
-            mage
+            Manage admin
         </div>
     )
 }
