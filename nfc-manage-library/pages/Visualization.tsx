@@ -1,41 +1,65 @@
-import { BarChartData, PieChartData } from "./components/Chart/@types";
-import { Card, CardBody, CardHeader } from "@nextui-org/react";
-import dynamic from "next/dynamic";
 
-const PieChart = dynamic(() => import('./components/Chart/PieChart'), { ssr: false })
-const BarChart = dynamic(() => import('./components/Chart/BarChart'), { ssr: false })
+import { Card, CardBody, CardHeader, DatePicker, getKeyValue, Table, TableBody, TableCell, TableColumn, TableHeader, TableRow } from "@nextui-org/react";
+import DashCircle from "./api/authen/POST/Dashboard/GET/dashCircle";
+import { useEffect, useState } from "react";
+import BarChartPage from "./components/Chart/showBarchart";
+import BarChartCardPage from "./components/Chart/showBarchartCard";
+import CountCardScan from "./api/authen/POST/Dashboard/GET/CountCardScan";
+import DoughnutChart from "./components/Chart/DoughnutChart";
+
+
 
 const Visualization = () => {
+    const [dataGraph, setDataGraph] = useState();
+    const [countScanCard, setCountScanCard] = useState();
 
-    const barChartData: BarChartData = {
-        indexBy: "day",
-        keys: ["lastWeek", "last6Days"],
-        datasets: [
-            { day: "Sun", lastWeek: 10, last6Days: 5 },
-            { day: "Mon", lastWeek: 7, last6Days: 3 },
-            { day: "Tue", lastWeek: 8, last6Days: 2 },
-            { day: "Wed", lastWeek: 15, last6Days: 12 },
-            { day: "Thu", lastWeek: 20, last6Days: 10 },
-            { day: "Fri", lastWeek: 25, last6Days: 20 },
-            { day: "Sat", lastWeek: 18, last6Days: 15 }
-        ],
-        label: "Number of Scans where NFC Board Game is Played",
-        axis: "Number of Scans",
-        colorBy: "id",
-        title: "Count of Scan NFC Board Game"
-    };
+    const FetchData = async () => {
+        try {
+            const data = await DashCircle();
+            const countScanCard = await CountCardScan();
+            setCountScanCard(countScanCard);
+            setDataGraph(data);
+            console.log(data, 'dataGraph')
+            // const data = await DashBar();
+            // const data = await DashPie();
 
-
-    const pieChartData: PieChartData = {
-        total: 865,
-        labels: ["Werewolf", "TNT Run", "SkyWar"],
-        title: "Game Play Distribution",
-        datasets: [
-            { id: "werewolf", label: "Werewolf", value: 345 },
-            { id: "tnt-run", label: "TNT Run", value: 290 },
-            { id: "skywar", label: "SkyWar", value: 230 }
-        ]
-    };
+        } catch (error) {
+            console.error(error);
+        }
+    }
+    useEffect(() => {
+        FetchData();
+    }, [])
+    
+    const rows = [
+        {
+            detail_report: "ไม่มีต้าชนะใจเราเสมอ",
+            date_report: "2024-05-02T19:26:16"
+        },
+        {
+            detail_report: "ไม่มีต้าชนะใจเราเสมอ",
+            date_report: "2024-05-02T19:26:16"
+        },
+        {
+            detail_report: "ไม่มีต้าชนะใจเราเสมอ",
+            date_report: "2024-05-02T19:26:16"
+        },
+        {
+            detail_report: "ไม่มีต้าชนะใจเราเสมอ",
+            date_report: "2024-05-02T19:26:16"
+        },
+      ];
+      
+      const columns = [
+        {
+          key: "detail_report",
+          label: "Time",
+        },
+        {
+          key: "date_report",
+          label: "Detail",
+        },
+      ];
 
     return (
         <div className="flex flex-col w-full">
@@ -43,7 +67,7 @@ const Visualization = () => {
             <div className="grid grid-cols-4 grid-rows-5 gap-6 m-6">
                 <div className="col-span-3 row-span-2 border-2">
                     <div className="h-[500px] mb-10">
-                        <BarChart data={barChartData} />
+                        <BarChartPage data={dataGraph} />
                     </div>
                 </div>
 
@@ -51,22 +75,38 @@ const Visualization = () => {
                     <Card>
                         <CardHeader>
                             <p>Card Title</p>
+                            <DatePicker
+                                label={"Birth date"}
+                                className="max-w-[284px]"
+                                labelPlacement="outside"
+                            />
                         </CardHeader>
                         <CardBody>
-                            <p>Card Body</p>
+                            <Table aria-label="Example table with dynamic content">
+                                <TableHeader columns={columns}>
+                                    {(column) => <TableColumn key={column.key}>{column.label}</TableColumn>}
+                                </TableHeader>
+                                <TableBody items={rows}>
+                                    {(item) => (
+                                        <TableRow key={item.detail_report}>
+                                            {(columnKey) => <TableCell>{getKeyValue(item, columnKey)}</TableCell>}
+                                        </TableRow>
+                                    )}
+                                </TableBody>
+                            </Table>
                         </CardBody>
                     </Card>
                 </div>
 
                 <div className="col-span-3 row-span-2 col-start-1 row-start-3 border-2">
                     <div className="h-[500px]">
-                        <BarChart data={barChartData} />
+                        <BarChartCardPage data={countScanCard} />
                     </div>
                 </div>
 
                 <div className="row-span-2 col-start-4 row-start-3 border-2">
                     <div className="h-[500px]">
-                        <PieChart data={pieChartData} />
+                        <DoughnutChart data={dataGraph} />
                     </div>
                 </div>
             </div>
