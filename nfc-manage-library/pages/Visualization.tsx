@@ -6,6 +6,7 @@ import BarChartPage from "./components/Chart/showBarchart";
 import BarChartCardPage from "./components/Chart/showBarchartCard";
 import CountCardScan from "./api/authen/POST/Dashboard/GET/CountCardScan";
 import DoughnutChart from "./components/Chart/DoughnutChart";
+import { TableData } from "./components/tableDashboard";
 
 
 
@@ -61,6 +62,11 @@ const Visualization = () => {
         },
       ];
 
+    //   const date = new Date();
+    //   const handleDateChange = (date: Date) => {
+    //     console.log(date);
+    //   }
+
     return (
         <div className="flex flex-col w-full">
             <label className="text-2xl">Visualization</label>
@@ -72,30 +78,7 @@ const Visualization = () => {
                 </div>
 
                 <div className="row-span-2 col-start-4 row-start-1 border-2">
-                    <Card>
-                        <CardHeader>
-                            <p>Card Title</p>
-                            <DatePicker
-                                label={"Birth date"}
-                                className="max-w-[284px]"
-                                labelPlacement="outside"
-                            />
-                        </CardHeader>
-                        <CardBody>
-                            <Table aria-label="Example table with dynamic content">
-                                <TableHeader columns={columns}>
-                                    {(column) => <TableColumn key={column.key}>{column.label}</TableColumn>}
-                                </TableHeader>
-                                <TableBody items={rows}>
-                                    {(item) => (
-                                        <TableRow key={item.detail_report}>
-                                            {(columnKey) => <TableCell>{getKeyValue(item, columnKey)}</TableCell>}
-                                        </TableRow>
-                                    )}
-                                </TableBody>
-                            </Table>
-                        </CardBody>
-                    </Card>
+                    <TableData />
                 </div>
 
                 <div className="col-span-3 row-span-2 col-start-1 row-start-3 border-2">
