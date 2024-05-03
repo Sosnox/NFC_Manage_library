@@ -1,5 +1,7 @@
-import { Button, Link } from "@nextui-org/react"
+import { Button } from "@nextui-org/react"
 import Cookies from 'js-cookie';
+import Link from "next/link";
+
 
 import { BsClipboardData } from "react-icons/bs";
 import { SlGameController } from "react-icons/sl";

@@ -2,12 +2,13 @@ import { Button, Card, CardBody, CardFooter, Input } from "@nextui-org/react";
 import { useState } from "react";
 import loginAuth from "./api/authen/POST/Login";
 import Cookies from 'js-cookie';
-import { jwtDecode } from "jwt-decode";
+
 
 interface LoginProps {
     username: string;
     password: string;
 }
+
 interface LoginComponentProps {
     onLogin: (loginStatus: boolean) => void;
     handleRole: (role: string) => void;
@@ -18,7 +19,6 @@ const Login = ({ onLogin, handleRole }: LoginComponentProps) => {
         username: "",
         password: ""
     })
-    console.log(loginData, "loginData")
 
     const handleLogin = async () => {
         try {
