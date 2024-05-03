@@ -3,11 +3,12 @@
 import { AiTwotoneEdit } from "react-icons/ai";
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
-import { Search_edit } from "./components/SearchBar/searchedit";
+import PopupAU from "./components/AddUser/PopupAU";
+
 
 export const ManageAdmin = () => {
-    const router = useRouter()
-
+    const [openAU, setOpenAU] = useState(false)
+    // const res = await fetch("")
     return (
         <>
             <div>
@@ -19,8 +20,11 @@ export const ManageAdmin = () => {
 
                 <div className="grid grid-cols-6 justify-center items-center pl-4 pr-4 bg-gray-900 border mt-[2px] rounded-b-xl h-[50px]">
                     <div className="col-span-1 justify-self-start"><input type="checkbox" /></div>
-                    <div className="col-span-2 justify-self-center"><Search_edit /></div>
-                    <button  className="p-2 pr-4 pl-4 rounded-md  bg-white col-span-2 justify-self-center hover:bg-gray-400">ADD</button>
+                    <div className="col-span-2 justify-self-center"></div>
+                    <button  className="p-2 pr-4 pl-4 rounded-md  bg-white col-span-2 justify-self-center hover:bg-gray-400" onClick={() => setOpenAU(true)}>ADD</button>
+                    {openAU && (
+                        <PopupAU setClosePopup={setOpenAU}/>
+                    )}
                     <button  className="p-2 pr-4 pl-4 rounded-md  bg-white  justify-self-end hover:bg-gray-400">DELETE ALL</button>
                 </div>
             </div>

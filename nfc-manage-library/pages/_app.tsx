@@ -55,14 +55,14 @@ export default function App({ Component, pageProps }: AppProps) {
           {role === 'super_admin' ? (
             <>
               <NavbarSuperadmin />
-              <main className="border-2 w-full m-16">
+              <main className="w-full m-16">
                 <Component {...pageProps} />
               </main>
             </>
           ) : (
             <>
               <Navbar />
-              <main className="border-2 w-full m-16">
+              <main className=" w-full m-16">
                 <Component {...pageProps} />
               </main>
             </>

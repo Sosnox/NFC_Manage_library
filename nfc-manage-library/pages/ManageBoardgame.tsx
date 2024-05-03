@@ -127,7 +127,7 @@ const ManageBoardgame = () => {
               <input type="checkbox" checked={recommend} onChange={(e) => setRecommend(e.target.checked)} />
               <label className="">เกมแนะนำ</label>
             </div>
-            <button type="button" className="p-4 rounded-lg bg-green-500 hover:bg-green-400 text-xl font-bold text-white border" onClick={handleSubmit}>
+            <button type="button" className="p-4 rounded-lg bg-green-500 hover:bg-green-400 text-xl font-bold text-white " onClick={handleSubmit}>
               Submit
             </button>
             {notification}

@@ -36,7 +36,6 @@ function AddGameCard() {
 
         } catch (error) {
             console.error('Error fetching data:', error);
-            // Optionally, you can set an empty array for posts if fetching fails
             setPosts([]);
         }
     };
@@ -44,7 +43,7 @@ function AddGameCard() {
 
     useEffect(() => {
         fetchPosts();
-    }, []);
+    }, [posts]);
 
     console.log(posts)
 

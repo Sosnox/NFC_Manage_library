@@ -12,9 +12,10 @@ interface AddGameCard {
     detail_card: any;
     title_card: any;
     id_card: any;
+    openPopup: any;
 }
 
-function CardEdit({ id_boardgame }: { id_boardgame: any }) {
+function CardEdit({ id_boardgame }: {id_boardgame : any}) {
     const [posts, setPosts] = useState<AddGameCard[]>([]);
     const [notification, setNotification] = useState(false); // เปลี่ยนชื่อ state เป็น notification
     useEffect(() => {
@@ -24,11 +25,12 @@ function CardEdit({ id_boardgame }: { id_boardgame: any }) {
             setPosts(data);
         };
         fetchPosts();
-    }, []);
+    }, [posts]);
 
     const [openPopups, setOpenPopups] = useState<{ [key: number]: boolean }>({});
 
     const handleOpenPopup = (index: number) => {
+
         setOpenPopups(prevState => ({
             ...prevState,
             [index]: true
@@ -70,6 +72,7 @@ function CardEdit({ id_boardgame }: { id_boardgame: any }) {
             {posts.length > 0 ? (
                 posts.map((post, index) => (
                     <div key={index} className="grid grid-cols-6 justify-self-start border shadow-black shadow-md rounded-xl pt-4 pb-4  mt-2 bg-white hover:bg-opacity-50">
+                        
                         <div className="ml-[15px]"><input type="checkbox" /></div>
                         <div className=" col-span-2 justify-self-center">
                             <span className="font-semibold text-[18px]">
@@ -85,7 +88,7 @@ function CardEdit({ id_boardgame }: { id_boardgame: any }) {
                                 path_image_card={post.path_image_card}
                                 id_boardgame={post.id_boardgame}
                                 id_card={post.id_card}
-                                setClosePopup={() => handleClosePopup}
+                                setClosePopup={() => handleClosePopup(index)}
                             />
                         )}
                         <div className="edit-card-bin justify-self-end mr-8 hover:text-red-600" onClick={() => handleDeleteCard(post.id_card)}><MdDeleteForever size={25} /></div>
@@ -94,7 +97,6 @@ function CardEdit({ id_boardgame }: { id_boardgame: any }) {
             ) : (
                 <p>No Card</p>
             )}
-            {notification && <NotiPassDel/>} 
         </>
     );
 }

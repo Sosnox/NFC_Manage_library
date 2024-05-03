@@ -1,11 +1,9 @@
 import Image from 'next/image';
-import logo from '@/styles/pictures/Logo.png';
 
 import { FaUserShield } from "react-icons/fa";
 import { MdDriveFileRenameOutline } from "react-icons/md";
 import { FaKey } from "react-icons/fa";
 import { RiShieldKeyholeFill } from "react-icons/ri";
-// className="text-[18px] border rounded-xl font-semibold text-white  pr-[80px] pl-[80px] p-4 text-white-500 hover:bg-white hover:bg-opacity-40
 
 interface PopupAUProps {
     setClosePopup: (value: boolean) => void;
@@ -21,7 +19,6 @@ export const PopupAU = ( { setClosePopup }: PopupAUProps) => {
             <div className="bg-white p-8 rounded-lg w-[700px]">
                 
                 <div className='flex items-center justify-center pb-4'>
-                    <Image src={logo} alt="logo" width={150} />
                 </div>
                 <div className='flex justify-between items-center mb-4'>
                     <MdDriveFileRenameOutline size={25}/>
@@ -45,10 +42,7 @@ export const PopupAU = ( { setClosePopup }: PopupAUProps) => {
                     <RiShieldKeyholeFill size={25}/>
                     <label className="mr-2">การอนุญาต</label>
                     <select className="px-4 py-2 border border-gray-300 rounded-lg w-3/4 ">
-
                         <option value="admin">Admin</option>
-                        <option value="superadmin">Super Admin</option>
-
                     </select>
                 </div>
                 

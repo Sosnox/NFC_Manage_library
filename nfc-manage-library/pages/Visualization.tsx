@@ -68,8 +68,8 @@ const Visualization = () => {
     //   }
 
     return (
-        <div className="flex flex-col w-full">
-            <label className="text-2xl">Visualization</label>
+        <div className="flex flex-col w-full overflow-y-scroll h-[800px]">
+            <label className="text-[32px] underline font-semibold">Visualization</label>
             <div className="grid grid-cols-4 grid-rows-5 gap-6 m-6">
                 <div className="col-span-3 row-span-2 border-2">
                     <div className="h-[500px] mb-10">
