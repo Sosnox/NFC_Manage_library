@@ -10,13 +10,20 @@
   },
   "dependencies": {
     "@nextui-org/react": "^2.3.6",
+    "@nivo/bar": "^0.86.0",
+    "@nivo/core": "^0.86.0",
+    "@nivo/line": "^0.86.0",
+    "@nivo/pie": "^0.86.0",
     "jose": "^5.2.4",
     "js-cookie": "^3.0.5",
     "js-cookies": "^1.0.4",
     "jwt-decode": "^4.0.0",
     "next": "14.2.3",
     "react": "^18",
-    "react-dom": "^18"
+    "react-chartjs-2": "^5.2.0",
+    "react-dom": "^18",
+    "react-icons": "^5.2.0",
+    "react-toastify": "^10.0.5"
   },
   "devDependencies": {
     "@types/js-cookie": "^3.0.6",

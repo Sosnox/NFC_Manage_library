@@ -16,6 +16,6 @@
       "@/*": ["./*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "pages/components/Chart/showBarchart.jsx", "pages/components/Chart/DoughnutChart.jsx"],
   "exclude": ["node_modules"]
 }
