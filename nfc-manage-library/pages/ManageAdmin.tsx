@@ -1,14 +1,10 @@
-
-
-import { AiTwotoneEdit } from "react-icons/ai";
-import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import PopupAU from "./components/AddUser/PopupAU";
+import { EditUser } from "./components/editUser";
 
 
 export const ManageAdmin = () => {
     const [openAU, setOpenAU] = useState(false)
-    // const res = await fetch("")
     return (
         <>
             <div>
@@ -29,6 +25,7 @@ export const ManageAdmin = () => {
                 </div>
             </div>
             <div>
+                <EditUser/>
             </div>
         
         </>

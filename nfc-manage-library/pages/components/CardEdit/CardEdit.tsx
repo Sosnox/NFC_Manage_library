@@ -15,9 +15,10 @@ interface AddGameCard {
     openPopup: any;
 }
 
-function CardEdit({ id_boardgame }: {id_boardgame : any}) {
+function CardEdit({ id_boardgame, search }: {id_boardgame : any, search : string}) {
     const [posts, setPosts] = useState<AddGameCard[]>([]);
-    const [notification, setNotification] = useState(false); // เปลี่ยนชื่อ state เป็น notification
+    const [searchTerm, setSearchTerm] = useState<string>('');
+
     useEffect(() => {
         const fetchPosts = async () => {
             const response = await fetch('http://210.246.215.173:8000/get_all_card_by_id_boardgame/?id_boardgame=' + id_boardgame);
@@ -25,12 +26,32 @@ function CardEdit({ id_boardgame }: {id_boardgame : any}) {
             setPosts(data);
         };
         fetchPosts();
-    }, [posts]);
+    }, [id_boardgame]);
+
+    useEffect(() => {
+        setSearchTerm(search);
+    }, [search]);
+
+    useEffect(() => {
+        const fetchPosts = async () => {
+            const response = await fetch('http://210.246.215.173:8000/get_all_card_by_id_boardgame/?id_boardgame=' + id_boardgame);
+            const data = await response.json();
+
+            if (searchTerm === '') {
+                setPosts(data);
+            } else {
+                const filteredPosts = data.filter((post: { title_card: string; }) => {
+                    return post.title_card.toLowerCase().includes(searchTerm.toLowerCase());
+                });
+                setPosts(filteredPosts);
+            }
+        };
+        fetchPosts();
+    }, [id_boardgame, searchTerm]);
 
     const [openPopups, setOpenPopups] = useState<{ [key: number]: boolean }>({});
 
     const handleOpenPopup = (index: number) => {
-
         setOpenPopups(prevState => ({
             ...prevState,
             [index]: true
@@ -55,14 +76,11 @@ function CardEdit({ id_boardgame }: {id_boardgame : any}) {
 
             if (response.ok) {
                 setPosts(prevPosts => prevPosts.filter(post => post.id_card !== id_card));
-                setNotification(true);
                 console.log("Card deleted successfully!");
             } else {
-                setNotification(false);
                 console.error("Failed to delete card:", response.statusText);
             }
         } catch (error) {
-            setNotification(false);
             console.error("Error deleting card:", error);
         }
     };

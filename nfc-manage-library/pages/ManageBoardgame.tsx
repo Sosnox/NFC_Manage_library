@@ -47,7 +47,7 @@ const ManageBoardgame = () => {
       }
   
       try {
-        const response = await fetch("http://210.246.215.173:8000/admin/post_boardgame/", {
+        const response = await fetch("https://210.246.215.173:8000/admin/post_boardgame/", {
           method: "POST",
           body: formData,
         });

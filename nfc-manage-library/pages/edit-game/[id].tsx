@@ -15,19 +15,19 @@ export default function EditGame() {
     const [openPopup, setOpenPopup] = useState(false)
     const [openPopupVerti, setOpenPopupVerti] = useState(false)
     const [openPopupEG, setOpenPopupEG] = useState(false)
+    
+    const [searchCard, setSearchCard] = useState("")
+
+
     const router = useRouter()
     const { id } = router.query
     console.log(id)
 
-
-    const haddlePopup = () =>{
-        setOpenPopupSH(!openPopup)
-    }
-
     if (!id) {
         return <div>Loading...</div>;
     }
-    console.log(openPopupSH)
+    
+    console.log(searchCard)
     return (
         <>
             <div>
@@ -47,8 +47,11 @@ export default function EditGame() {
 
                 <div className="grid grid-cols-6 justify-center items-center pl-4 pr-4 bg-gray-900 border mt-[2px] rounded-b-xl h-[50px]">
                     <div className="col-span-1 justify-self-start"><input type="checkbox" /></div>
-                    <div className="col-span-2 justify-self-center"></div>
-                    <button onClick={() => setOpenPopup(true)} className="p-2 pr-4 pl-4 rounded-md  bg-white col-span-2 justify-self-center hover:bg-gray-400 font-semibold ">ADD</button>
+                    <div className="col-span-2 justify-self-center">
+                        <input onChange={(event) => setSearchCard(event.target.value)} className="p-1 pr-4 pl-4 rounded-lg"/>
+                    </div>
+                    <div className="col-span-1 justify-self-center"></div>
+                    <button onClick={() => setOpenPopup(true)} className="p-2 pr-4 pl-4 rounded-md  bg-white col-span-1 justify-self-center hover:bg-gray-400 font-semibold ">ADD</button>
 
                     {openPopup && (
                         <PopupAC setClosePopup={setOpenPopup} id_boardgame={id} />
@@ -57,7 +60,7 @@ export default function EditGame() {
                 </div>
             </div>
                 <div className=" overflow-y-scroll p-1 h-[600px]">
-                    <CardEdit id_boardgame={id} />
+                    <CardEdit id_boardgame={id} search={searchCard}/>
                 </div>
 
         </>
