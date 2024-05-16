@@ -69,25 +69,25 @@ const Visualization = () => {
 
     return (
         <div className="flex flex-col w-full overflow-y-scroll h-[800px]">
-            <label className="text-[32px] underline font-semibold">Visualization</label>
+            <label className="text-[48px] font-semibold">Visualization</label>
             <div className="grid grid-cols-4 grid-rows-5 gap-6 m-6">
-                <div className="col-span-3 row-span-2 border-2">
+                <div className="col-span-3 row-span-2 ">
                     <div className="h-[500px] mb-10">
                         <BarChartPage data={dataGraph} />
                     </div>
                 </div>
 
-                <div className="row-span-2 col-start-4 row-start-1 border-2">
+                <div className="row-span-2 col-start-4 row-start-1 mt-12">
                     <TableData />
                 </div>
 
-                <div className="col-span-3 row-span-2 col-start-1 row-start-3 border-2">
+                <div className="col-span-3 row-span-2 col-start-1 row-start-3 ">
                     <div className="h-[500px]">
                         <BarChartCardPage data={countScanCard} />
                     </div>
                 </div>
 
-                <div className="row-span-2 col-start-4 row-start-3 border-2">
+                <div className="row-span-2 col-start-4 row-start-3">
                     <div className="h-[500px]">
                         <DoughnutChart data={dataGraph} />
                     </div>

@@ -33,7 +33,7 @@ const options = {
     y: {
       title: {
         display: true,
-        text: 'Scan Count',
+        text: 'Board Game Scan Counts',
         font: {
           size: 16,
           weight: 'bold',
@@ -71,9 +71,7 @@ const BarChartPage = ({ data }) => {
 
   return (
     <div className='w-full h-full'>
-      <label className="text-3xl font-bold ">Today Revenue</label>
       <br/>
-      <label className="text-2xl font-bold ml-4">$ 1000</label>
       <Bar data={chartData} options={options} />
     </div>
   );

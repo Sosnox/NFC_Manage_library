@@ -64,7 +64,9 @@ const DoughnutChart = ({ data }) => {
 
     return (
         <div>
-            <label className="text-[32px] font-semibold underline">Popular Board Games</label>
+            <div className='mb-8'>
+                <label className="text-[32px]">Popular Board Games</label>
+            </div>
             <Doughnut data={chartData} options={options} />
         </div>
     );

@@ -45,8 +45,6 @@ function AddGameCard() {
         fetchPosts();
     }, [posts]);
 
-    console.log(posts)
-
     return (
         <div className='grid grid-cols-5 gap-12 mb-14 '>
 
