@@ -23,10 +23,11 @@ ChartJS.register(
 );
 
 const DoughnutChart = ({ data }) => {
+    console.log(data, "DoughnutChart")
     const [chartData, setChartData] = useState({
         labels: [],
         datasets: [{
-            label: 'Scan Counts',
+            label: 'Rating max 5',
             data: [],
             backgroundColor: 'rgba(255, 99, 132, 0.5)',
         }]
@@ -34,12 +35,12 @@ const DoughnutChart = ({ data }) => {
 
     useEffect(() => {
         if (data) {
-            const labels = data.map(item => item.title_game).slice(0, 5);
-            const dataPoints = data.map(item => item.count_scan_boardgame).slice(0, 5);
+            const labels = data.map(item => item.title_boardgame).slice(0, 5);
+            const dataPoints = data.map(item => item.total_rating).slice(0, 5);
             setChartData({
                 labels: labels,
                 datasets: [{
-                    label: 'Scan Counts',
+                    label: 'Rating max 5 ',
                     data: dataPoints,
                     backgroundColor: [
                         'rgba(255, 99, 132, 0.5)',
@@ -64,7 +65,7 @@ const DoughnutChart = ({ data }) => {
 
     return (
         <div>
-            <label className="text-[32px] font-semibold underline">Popular Board Games</label>
+            <label className="text-[32px] font-semibold underline">Rating Average Boardgame</label>
             <Doughnut data={chartData} options={options} />
         </div>
     );
