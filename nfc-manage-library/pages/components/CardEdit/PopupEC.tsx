@@ -1,15 +1,13 @@
-    import Image from 'next/image';
-    import logo from '@/styles/pictures/Logo.png';
-    import { ReactNode } from 'react';
+
     import { useState } from 'react';
 
-    import { NotiFailCard, NotiPassCard } from '../PopupCheck/Notification';
+    import { NotiFailCard, NotiPassEdit } from '../PopupCheck/Notification';
 
     import { MdDriveFileRenameOutline } from "react-icons/md";
     import { BiDetail } from "react-icons/bi";
     import { MdOutlineAirplay } from "react-icons/md";
     import { SlPicture } from "react-icons/sl";
-    import { TbDeviceGamepad } from "react-icons/tb";
+
 
     interface PopupAUProps {
         setClosePopup: (value: boolean) => void;
@@ -69,7 +67,7 @@
                 if (response.ok) {
                     console.log("Data submitted successfully!");
                     setSelectedFile(null);
-                    setNotification(<NotiPassCard/>)
+                    setNotification(<NotiPassEdit/>)
     
                 } else {
                     console.error("Submission failed!", response);
