@@ -1,0 +1,13 @@
+version: '3.1'
+
+services:
+  frontend:
+    container_name: nfc-manage-library
+    build: ./nfc-manage-library
+    environment:
+      - NODE_ENV=production
+    ports:
+      - "3000:3000"
+    expose:
+      - 3000
+    restart: always

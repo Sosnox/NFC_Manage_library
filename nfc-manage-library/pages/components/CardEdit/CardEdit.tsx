@@ -1,7 +1,6 @@
 import { MdDeleteForever } from "react-icons/md";
 import { useState, useEffect } from "react";
 import PopupEC from "./PopupEC";
-import { NotiFailCard, NotiPassCard, NotiPassDel } from '../PopupCheck/Notification';
 
 interface AddGameCard {
     id_boardgame: any;

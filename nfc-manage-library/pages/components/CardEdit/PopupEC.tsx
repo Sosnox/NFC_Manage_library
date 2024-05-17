@@ -1,12 +1,11 @@
 
     import { useState } from 'react';
-
-    import { NotiFailCard, NotiPassEdit } from '../PopupCheck/Notification';
-
     import { MdDriveFileRenameOutline } from "react-icons/md";
     import { BiDetail } from "react-icons/bi";
     import { MdOutlineAirplay } from "react-icons/md";
     import { SlPicture } from "react-icons/sl";
+import { NotiPassEdit } from '../PopupCheck/notifications/NotiPassEdit';
+import NotiFailCard from '../PopupCheck/notifications/NotiFailCard';
 
 
     interface PopupAUProps {

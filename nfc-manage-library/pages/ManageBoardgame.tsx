@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { NotiFail, NotiPass } from "./components/PopupCheck/Notification";
+import NotiFail from "./components/PopupCheck/notifications/NotiFail";
+import NotiPass from "./components/PopupCheck/notifications/NotiPass";
 
 const endpoint = process.env.NEXT_PUBLIC_API_URL_AUTH;
 

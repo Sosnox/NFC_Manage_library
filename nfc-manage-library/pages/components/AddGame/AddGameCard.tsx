@@ -84,7 +84,6 @@ function AddGameCard() {
                 <p>No Bordgame</p>
             )}
 
-            
         </div>
     );
 }

@@ -16,7 +16,7 @@ const columns = [
 ];
 
 
-export const TableData = () => {
+const TableData = () => {
     const now = today(getLocalTimeZone());
     const [value, setValue] = useState<DateValue>(now);
     const [checkDate , setCheckDate] = useState([{
@@ -68,8 +68,8 @@ export const TableData = () => {
     };
 
     return (
-        <Card>
-            <CardHeader className="flex w-full ">
+        <Card className="w-full h-full">
+            <CardHeader className="w-full">
                 <Calendar
                     aria-label="Select date to view report"
                     className="w-full"
@@ -79,7 +79,7 @@ export const TableData = () => {
                 />
             </CardHeader>
             <CardBody>
-                <Table className="h-[300px]" aria-label="Data Table">
+                <Table className="h-[500px] mt-19" aria-label="Data Table">
                     <TableHeader columns={columns}>
                         {column => <TableColumn key={column.key}>{column.label}</TableColumn>}
                     </TableHeader>
@@ -99,3 +99,4 @@ export const TableData = () => {
         </Card>
     );
 };
+export default TableData;

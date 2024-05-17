@@ -4,9 +4,9 @@ import Login from "./Login";
 import { NextUIProvider } from "@nextui-org/react";
 import { use, useEffect, useState } from "react";
 import Cookies from 'js-cookie';
-import { Navbar } from "./components/navbar";
 import { jwtDecode } from 'jwt-decode';
-import { NavbarSuperadmin } from "./components/navbarSuperadmin";
+import NavbarSuperadmin from "./components/navbarSuperadmin";
+import Navbar from "./components/navbar";
 
 
 export default function App({ Component, pageProps }: AppProps) {
@@ -62,7 +62,7 @@ export default function App({ Component, pageProps }: AppProps) {
           ) : (
             <>
               <Navbar />
-              <main className=" w-full m-16">
+              <main className="w-full m-16">
                 <Component {...pageProps} />
               </main>
             </>

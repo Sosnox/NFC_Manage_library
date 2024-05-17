@@ -2,19 +2,14 @@ import Image from 'next/image';
 import logo from '@/styles/pictures/Logo.png';
 import { ReactNode } from 'react';
 import { useState, useEffect } from 'react';
-
-import { NotiFailCard, NotiPassEdit } from '../PopupCheck/Notification';
-
-
-
-
-
 import { BiDetail } from "react-icons/bi";
 import { MdDriveFileRenameOutline } from "react-icons/md";
 import { TbDeviceGamepad } from "react-icons/tb";
 import { IoCalendarNumber } from "react-icons/io5";
 import { MdOutlineTimer } from "react-icons/md";
 import { FaLink } from "react-icons/fa";
+import { NotiPassEdit } from '../PopupCheck/notifications/NotiPassEdit';
+import NotiFailCard from '../PopupCheck/notifications/NotiFailCard';
 
 
 interface InputPopup {

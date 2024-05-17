@@ -45,3 +45,4 @@ export const NavbarSuperadmin = () => {
         </div>
     )
 }
+export default NavbarSuperadmin

@@ -6,7 +6,7 @@ import { SlGameController } from "react-icons/sl";
 import { IoMdAdd } from "react-icons/io";
 
 
-export const Navbar = () => {
+const Navbar = () => {
     const handleLogout = () => {
         Cookies.remove('token');
         window.location.reload();
@@ -43,3 +43,4 @@ export const Navbar = () => {
         </div>
     )
 }
+export default Navbar

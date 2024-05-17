@@ -8,10 +8,9 @@ import {
     Title, 
     Tooltip, 
     Legend,
-    ArcElement  // Import the ArcElement
+    ArcElement
 } from 'chart.js';
 
-// Register the necessary chart components
 ChartJS.register(
     CategoryScale,
     LinearScale,
@@ -19,7 +18,7 @@ ChartJS.register(
     Title,
     Tooltip,
     Legend,
-    ArcElement  // Add this to register the Arc element used in Doughnut charts
+    ArcElement
 );
 
 const DoughnutChart = ({ data }) => {
@@ -59,15 +58,25 @@ const DoughnutChart = ({ data }) => {
             legend: {
                 position: 'top'
             },
+            title: {
+                display: true,
+                text: 'Average Rating of Top 5 Board Games',
+                font: {
+                    size: 13
+                },
+                padding: {
+                    top: 10,
+                },
+                color: '#666'
+            }
         },
     };
 
     return (
-        <div>
-            <div className='mb-8'>
-                <label className="text-[32px]">Popular Board Games</label>
+        <div className='flex justify-center items-center'>
+            <div className='w-[230px] h-[230px]'>
+                <Doughnut data={chartData} options={options} />
             </div>
-            <Doughnut data={chartData} options={options} />
         </div>
     );
 };
