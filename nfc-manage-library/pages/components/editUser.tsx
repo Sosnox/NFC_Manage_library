@@ -13,29 +13,7 @@ interface UserInfo {
 export function EditUser() {
     const token = Cookies.get("token");
     console.log(token);
-    const [users, setUser] =  useState<UserInfo[]>([
-        {
-            username: "Test1",
-            password: "Test1",
-            first_name: "Test1",
-            last_name: "Test1",
-            role: "admin"
-        },
-        {
-            username: "Test2",
-            password: "Test2",
-            first_name: "Test2",
-            last_name: "Test2",
-            role: "admin"
-        },
-        {
-            username: "Test3",
-            password: "Test3",
-            first_name: "Test3",
-            last_name: "Test3",
-            role: "admin"
-        }
-    ]);
+    const [users, setUser] =  useState<UserInfo[]>([]);
 
 
     useEffect(() => {

@@ -95,134 +95,132 @@ export const PopupEG = ({ id_boardgame, setClosePopup }: InputPopup) => {
 
         try {
             const response = await fetch("http://210.246.215.173:8000/admin/update_boardgame/" + id_boardgame
-            , {
-                method: "PATCH", 
-                body: formData,
-            });
+                , {
+                    method: "PATCH",
+                    body: formData,
+                });
 
             if (response.ok) {
                 console.log("Data submitted successfully!");
                 setSelectedFile(null);
-                setNotification(<NotiPassEdit/>);
+                setNotification(<NotiPassEdit />);
             } else {
                 console.error("Submission failed!", response);
-                setNotification(<NotiFailCard/>);
+                setNotification(<NotiFailCard />);
             }
         } catch (error) {
             console.error("Error during submission:", error);
-            setNotification(<NotiFailCard/>);
+            setNotification(<NotiFailCard />);
         }
     }
 
     return (
-        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 w-full">
             <div className="bg-white p-8 rounded-lg w-[800px] h-screen">
                 <div className='flex items-center justify-center pb-4'>
                     <img src={previewUrl || "http://210.246.215.173:8000/uploaded_images/" + pathImage} alt={titleGame} width={200} />
                 </div>
-                <div className='flex justify-between items-center mb-4'>
-                    <MdDriveFileRenameOutline size={30} />
-                    <label className="mr-2"> ชื่อเกม </label>
-                    <input
-                        value={titleGame}
-                        type='text'
-                        placeholder='Name'
-                        className="px-4 py-2 border border-gray-300 rounded-lg w-3/4"
-                        onChange={(e) => setTitleGame(e.target.value)}
-                    />
-                </div>
+                <div className='overflow-y-scroll h-[400px]'>
+                    <div className='flex justify-between items-center mb-4'>
+                        <MdDriveFileRenameOutline size={30} />
+                        <label className="mr-2"> ชื่อเกม </label>
+                        <input
+                            value={titleGame}
+                            type='text'
+                            placeholder='Name'
+                            className="px-4 py-2 border border-gray-300 rounded-lg w-3/4"
+                            onChange={(e) => setTitleGame(e.target.value)}
+                        />
+                    </div>
 
-                <div className='flex justify-center ml-[50px]'>
-                    <div className='flex flex-col  mb-4'>
-                        <label className="mr-2">จำนวนผู้เล่นตั้งแต่</label>
+                    <div className='flex justify-center ml-[70px]'>
+                        <div className='flex flex-col  mb-4'>
+                            <label className="mr-2">จำนวนผู้เล่นตั้งแต่</label>
+                            <input
+                                value={playerRecommendStart}
+                                type='text'
+                                placeholder='Name'
+                                className="px-4 py-2 border border-gray-300 rounded-lg w-3/4"
+                                onChange={(e) => setPlayerRecommendStart(parseInt(e.target.value))}
+                            />
+                        </div>
+
+                        <div className='flex flex-col'>
+                            <label className="mr-2">ถึง</label>
+                            <input
+                                value={playerRecommendEnd}
+                                type='text'
+                                placeholder='Name'
+                                className="px-4 py-2 border border-gray-300 rounded-lg w-3/4"
+                                onChange={(e) => setPlayerRecommendEnd(parseInt(e.target.value))}
+                            />
+                        </div>
+                    </div>
+                    <div className='flex justify-between items-center mb-4'>
+                        <IoCalendarNumber size={30} />
+                        <label className="mr-2">อายุ</label>
                         <input
-                            value={playerRecommendStart}
+                            value={ageRecommend}
                             type='text'
                             placeholder='Name'
                             className="px-4 py-2 border border-gray-300 rounded-lg w-3/4"
-                            onChange={(e) => setPlayerRecommendStart(parseInt(e.target.value))}
+                            onChange={(e) => setAgeRecommend(parseInt(e.target.value))}
                         />
                     </div>
-                    
-                    <div className='flex flex-col'>
-                        <label className="mr-2">ถึง</label>
+                    <div className='flex justify-between items-center mb-4'>
+                        < MdOutlineTimer size={30} />
+                        <label className="mr-2">เวลาที่ใช้เล่นเกม</label>
                         <input
-                            value={playerRecommendEnd}
+                            value={timePlaying}
                             type='text'
                             placeholder='Name'
                             className="px-4 py-2 border border-gray-300 rounded-lg w-3/4"
-                            onChange={(e) => setPlayerRecommendEnd(parseInt(e.target.value))}
+                            onChange={(e) => setTimePlaying(parseInt(e.target.value))}
                         />
                     </div>
-                </div>
-                <div className='flex justify-between items-center mb-4'>
-                    <IoCalendarNumber size={30} />
-                    <label className="mr-2">อายุ</label>
-                    <input
-                        value={ageRecommend}
-                        type='text'
-                        placeholder='Name'
-                        className="px-4 py-2 border border-gray-300 rounded-lg w-3/4"
-                        onChange={(e) => setAgeRecommend(parseInt(e.target.value))}
-                    />
-                </div>
-                <div className='flex justify-between items-center mb-4'>
-                    < MdOutlineTimer size={30} />
-                    <label className="mr-2">เวลาที่ใช้เล่นเกม</label>
-                    <input
-                        value={timePlaying}
-                        type='text'
-                        placeholder='Name'
-                        className="px-4 py-2 border border-gray-300 rounded-lg w-3/4"
-                        onChange={(e) => setTimePlaying(parseInt(e.target.value))}
-                    />
-                </div>
-                <div className='flex justify-between items-center mb-4'>
-                    <TbDeviceGamepad size={30} />
-                    <label className="mr-2">ประเภทเกม</label>
-                    <input
-                        value={typeGame}
-                        type='text'
-                        placeholder='Name'
-                        className="px-4 py-2 border border-gray-300 rounded-lg w-3/4"
-                        onChange={(e) => setTypeGame(e.target.value)}
-                    />
-                </div>
-                <div className='flex justify-between items-center mb-4'>
-                    <FaLink size={30} />
-                    <label className="mr-2">ลิงค์</label>
-                    <input
-                        value={pathYoutube}
-                        placeholder='Detail'
-                        className="px-4 py-2 border border-gray-300 rounded-lg w-3/4"
-                        onChange={(e) => setPathYoutube(e.target.value)}
-                    />
-                </div>
-                <div className='flex justify-between items-center mb-4'>
-                    <BiDetail size={30} />
-                    <label className="mr-2">เนื้อหา</label>
-                    <textarea
-                        value={detailGame}
-                        placeholder='Trick'
-                        className="px-4 py-2 border border-gray-300 rounded-lg w-3/4 "
-                        onChange={(e) => setDetailGame(e.target.value)}
-                    />
-                </div>
-                <div className='flex flex-col justify-center items-center'>
-                    <div className='flex  mb-4'>
-                        <label className="mr-2">เกมแนะนำ</label>
+                    <div className='flex justify-between items-center mb-4'>
+                        <TbDeviceGamepad size={30} />
+                        <label className="mr-2">ประเภทเกม</label>
                         <input
-                            type="checkbox"
-                            checked={recommend}
-                            onChange={(e) => setRecommend(e.target.checked)}
-                            className="px-4 py-2 border border-gray-300 rounded-lg "
+                            value={typeGame}
+                            type='text'
+                            placeholder='Name'
+                            className="px-4 py-2 border border-gray-300 rounded-lg w-3/4"
+                            onChange={(e) => setTypeGame(e.target.value)}
                         />
                     </div>
-                    <div className='ml-24'>
+                    <div className='flex justify-between items-center mb-4'>
+                        <FaLink size={30} />
+                        <label className="mr-2">ลิงค์</label>
                         <input
-                            type='file'
-                            onChange={handleFileChange}
+                            value={pathYoutube}
+                            placeholder='Detail'
+                            className="px-4 py-2 border border-gray-300 rounded-lg w-3/4"
+                            onChange={(e) => setPathYoutube(e.target.value)}
                         />
+                    </div>
+                    <div className='flex justify-between items-center mb-4'>
+                        <BiDetail size={30} />
+                        <label className="mr-2">เนื้อหา</label>
+                        <textarea
+                            value={detailGame}
+                            placeholder='Trick'
+                            className="px-4 py-2 border border-gray-300 rounded-lg w-3/4 "
+                            onChange={(e) => setDetailGame(e.target.value)}
+                        />
+                    </div>
+                    <div className='flex flex-col justify-center items-center'>
+                        <div className=''>
+                        <label className="mr-2">เกมแนะนำ</label> 
+                            <select
+                                value={recommend ? "true" : "false"}
+                                onChange={(e) => setRecommend(true)}
+                                className="p-2 pr-4 pl-4 w-[150px] rounded-lg border border-black"
+                            >
+                                <option value="ture">เป็น</option>
+                                <option value="false">ไม่เป็น</option>
+                            </select>
+                        </div>
                     </div>
                 </div>
                 <div className="flex justify-evenly mt-16">

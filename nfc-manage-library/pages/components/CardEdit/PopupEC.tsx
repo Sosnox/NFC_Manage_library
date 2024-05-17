@@ -86,7 +86,7 @@
                 <div className="bg-white p-8 rounded-lg w-[600px]">
 
                     <div className='flex items-center justify-center pb-4'>
-                        <img src={previewUrl || "http://210.246.215.173:8000/uploaded_images/"+path_image_card} alt={title_card} width={200} />
+                        <img src={previewUrl || "http://210.246.215.173:8000/uploaded_images/"+path_image_card} alt={title_card} width={150} />
                     </div>
 
                     <div className='flex justify-between items-center mb-4'>
@@ -122,7 +122,7 @@
                     </div>
 
                
-                    <div className='flex justify-between items-center mt-14'>
+                    <div className='flex justify-between items-center mt-4'>
                         
                         <SlPicture size={30}/>
                         <label className="mr-2">Picture</label>
@@ -133,7 +133,7 @@
                         ></input>
                     </div>
                     
-                    <div className="flex justify-evenly mt-16">
+                    <div className="flex justify-evenly mt-4">
                         <button className="px-6 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600" onClick={handleEdit}>Save</button>
                         <button className="px-6 py-2 bg-gray-300 text-gray-700 rounded-lg hover:bg-gray-400"  onClick={handleClose}>Cancel</button>
                     </div>

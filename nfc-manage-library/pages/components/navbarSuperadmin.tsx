@@ -13,7 +13,7 @@ export const NavbarSuperadmin = () => {
     }
 
     return (
-        <div className="flex flex-col justify-between bg-gray-900 text-white p-4 h-screen">
+        <div className="flex flex-col justify-between bg-gray-900 text-white p-4 h-srceen">
             <Link href="/">
             <div className="bg-gray-800 rounded-lg m-4 mr-8 w-[200px] p-2 pl-4 ">
                 <div className="text-[20px] font-bold">NFC MANAGE LIBRARY</div>
