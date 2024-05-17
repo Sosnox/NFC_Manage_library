@@ -109,7 +109,7 @@
                         <textarea  
                         value={tickCard} 
                         placeholder='Trick' 
-                        className="px-4 py-2 border border-gray-300 rounded-lg w-3/4"
+                        className="px-4 py-2 border border-gray-300 rounded-lg w-3/4 h-[150px]"
                         onChange={(e) => setTickcard(e.target.value)}/>
                     </div>
                     

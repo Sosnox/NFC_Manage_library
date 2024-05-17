@@ -35,7 +35,7 @@ export default function EditGame() {
                     <div className="flex justify-center space-x-10 ">
                     <button className="p-4 w-[150px] bg-white rounded-xl text-[18px] flex justify-center font-semibold hover:bg-gray-400" onClick={() => setOpenPopupEG(true)}>Edit Game</button>
                     {openPopupEG &&
-                        <PopupEG id_boardgame={id} setClosePopup={setOpenPopup}  />
+                        <PopupEG id_boardgame={id} setClosePopup={setOpenPopupEG}  />
                     }
                     <button className="p-4 w-[150px] bg-white rounded-xl text-[18px] flex justify-center font-semibold hover:bg-gray-400"
                         onClick={() => setOpenPopupVerti(true)}>Delete Game</button>

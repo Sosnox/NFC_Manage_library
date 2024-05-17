@@ -3,7 +3,7 @@ import logo from '@/styles/pictures/Logo.png';
 import { ReactNode } from 'react';
 import { useState, useEffect } from 'react';
 
-import { NotiFailCard, NotiPassCard } from '../PopupCheck/Notification';
+import { NotiFailCard, NotiPassEdit } from '../PopupCheck/Notification';
 
 
 
@@ -103,14 +103,14 @@ export const PopupEG = ({ id_boardgame, setClosePopup }: InputPopup) => {
             if (response.ok) {
                 console.log("Data submitted successfully!");
                 setSelectedFile(null);
-                setNotification(<NotiPassCard/>);
+                setNotification(<NotiPassEdit/>);
             } else {
                 console.error("Submission failed!", response);
                 setNotification(<NotiFailCard/>);
             }
         } catch (error) {
             console.error("Error during submission:", error);
-            setNotification(<NotiFailCard />);
+            setNotification(<NotiFailCard/>);
         }
     }
 
@@ -227,7 +227,7 @@ export const PopupEG = ({ id_boardgame, setClosePopup }: InputPopup) => {
                 </div>
                 <div className="flex justify-evenly mt-16">
                     <button className="px-6 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600" onClick={handleEdit}>Save</button>
-                    <button className="px-6 py-2 bg-gray-300 text-gray-700 rounded-lg hover:bg-gray-400" onClick={() => { handleClose(); window.location.reload() }}>Cancel</button>
+                    <button className="px-6 py-2 bg-gray-300 text-gray-700 rounded-lg hover:bg-gray-400" onClick={handleClose}>Cancel</button>
                 </div>
             </div>
             {notification}

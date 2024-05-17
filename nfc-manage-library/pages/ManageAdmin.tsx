@@ -1,9 +1,11 @@
-import { useEffect, useState } from 'react';
+import { use, useEffect, useState } from 'react';
 import PopupAU from "./components/AddUser/PopupAU";
 import Cookies from 'js-cookie';
 import PopupEU from './components/EditUser/PopupEU';
+import DelUser from './components/PopupCheck/CheckDeleteUser';
 
 interface UserInfo {
+    id_user: string;
     username: string;
     password: string;
     first_name: string;
@@ -11,37 +13,18 @@ interface UserInfo {
     role: string;
 }   
 
+const endpoint = process.env.NEXT_PUBLIC_API_URL_AUTH;
+
 export const ManageAdmin = () => {
     const [openAU, setOpenAU] = useState(false);
-    const [openEU, setOpenEU] = useState(false);
-    const [users, setUsers] =  useState<UserInfo[]>([
-        {
-            username: "Test1",
-            password: "Test1",
-            first_name: "Test1",
-            last_name: "Test1",
-            role: "admin"
-        },
-        {
-            username: "Test2",
-            password: "Test2",
-            first_name: "Test2",
-            last_name: "Test2",
-            role: "admin"
-        },
-        {
-            username: "Test3",
-            password: "Test3",
-            first_name: "Test3",
-            last_name: "Test3",
-            role: "admin"
-        }
-    ]);
+    const [openEU, setOpenEU] = useState<{ [key: number]: boolean }>({});
+    const [openDU, setOpenDU] = useState<{ [key: number]: boolean }>({});
+    const [users, setUsers] =  useState<UserInfo[]>([]);
 
     useEffect(() => {
         const fetchUsers = async () => {
             try {
-                const response = await fetch("http://210.246.215.173:8000/superadmin/get_user_admin", {
+                const response = await fetch(endpoint + "/superadmin/get_user_admin/", {
                     method: "GET",
                     headers: {
                         "Authorization": `Bearer ${Cookies.get("token")}`,
@@ -58,52 +41,67 @@ export const ManageAdmin = () => {
             }
         };
         fetchUsers();
-    }, [users]);
+    }, []);
 
+    const handleEditUser = (index: number) => {
+        const updatedOpenEU = { ...openEU, [index]: true };
+        setOpenEU(updatedOpenEU);
+    };
 
+    const handleDeleteUser = (index: number) => {
+        const updatedOpenDU = { ...openDU, [index]: true };
+        setOpenDU(updatedOpenDU);
+    };
 
     return (
         <>
             <div>
                 <div className="h-[150px] bg-gray-900 rounded-t-lg flex items-center justify-center">
-                    <div className="flex justify-center space-x-10 ">
-                        <button className="p-4 w-[150px] bg-white rounded-xl text-[18px] flex justify-center font-semibold hover:bg-gray-400">Edit Profile</button>
+                    <div className="flex justify-center space-x-10">
+                        <button className="p-4 w-[300px] text-white rounded-xl text-[28px] flex justify-center font-semibold ">@Super Admin</button>
                     </div>
                 </div>
 
-                <div className="grid grid-cols-6 justify-center items-center pl-4 pr-4 bg-gray-900 border mt-[2px] rounded-b-xl h-[50px]">
-                    <div className="col-span-1 justify-self-start"></div>
-                    <div className="col-span-2 justify-self-center">
-                        <input type='text'/>
+                <div className="grid grid-cols-8 justify-center items-center pl-4 pr-4 bg-gray-900 border mt-[2px] rounded-b-xl h-[50px] text-white font-semibold">
+                    <div className="col-span-1 justify-self-start">
+                        ID
                     </div>
-                    <div className="col-span-1 justify-self-center"></div>
-
-                    <button  className="p-2 pr-4 pl-4 rounded-md  bg-white col-span-1 justify-self-center hover:bg-gray-400" onClick={() => setOpenAU(true)}>ADD</button>
+                    <div className="col-span-1 justify-self-start">
+                        FirstName
+                    </div>
+                    <div className="col-span-1 justify-self-start">
+                        LastName
+                    </div>
+                    <div className="col-span-2 justify-self-center">
+                        Role
+                    </div>
+                    <button className="p-2 pr-4 pl-4 rounded-md bg-white col-span-2 justify-self-center hover:bg-gray-400 text-black" onClick={() => setOpenAU(true)}>ADD</button>
                     {openAU && <PopupAU setClosePopup={setOpenAU}/>}
-                    <button  className="p-2 pr-4 pl-4 rounded-md  bg-white justify-self-end hover:bg-gray-400">DELETE ALL</button>
+                    <button className="p-2 pr-4 pl-4 rounded-md bg-white justify-self-end hover:bg-gray-400 text-black">DELETE ALL</button>
                 </div>
             </div>
             <div>   
                 {users.map((user, index) => (
-                    <div key={index} className="grid grid-cols-6 pl-4 pr-4 mt-4 w-full bg-white p-4 rounded-lg justify-center shadow-xl">
-                        <div className='col-span-1 justify-self-start'>{user.username}</div>
-                        <div className='col-span-2 justify-self-center'>{user.role}</div>
+                    <div key={index} className="grid grid-cols-8 pl-4 pr-4 mt-4 w-full bg-white p-4 rounded-lg justify-center shadow-xl">
+                        <div className='col-span-1 justify-self-start underline'>{user.username}</div>
+                        <div className='col-span-1 justify-self-start'>{user.first_name}</div>
+                        <div className='col-span-1 justify-self-start'>{user.last_name}</div>
+                        <div className='col-span-2 justify-self-center bg-gray-600 font-semibold text-white rounded-md pr-2 pl-2'>{user.role}</div>
                         <div className='col-span-1 justify-self-end'>
-
-                            <button className=' underline hover:text-red-500' onClick={() => setOpenEU(true)}>
-                                Edit    
-                            </button>
-                            {openEU && <PopupEU 
-                            setClosePopup={setOpenEU} 
-                            username={user.username} 
-                            password={user.password}
-                            first_name={user.first_name} 
-                            last_name={user.last_name}
-                            role={user.role}
+                            <button className='underline hover:bg-yellow-200 hover:rounded-lg pr-4 pl-4' onClick={() => handleEditUser(index)}>Edit</button>
+                            {openEU[index] && <PopupEU 
+                                setClosePopup={(value) => setOpenEU({ ...openEU, [index]: value })}
+                                first_name = {user.first_name}
+                                password= {user.password}
+                                id={user.id_user} 
                             />}
-
                         </div>
-                        <div className='col-span-2 justify-self-end'>Delete</div>
+                        <button className='col-span-2 justify-self-end hover:bg-red-200 hover:rounded-lg pr-4 pl-4 underline' onClick={() => handleDeleteUser(index)}>Delete</button>
+                        {openDU[index] && <DelUser
+                            first_name={user.first_name}
+                            id_user={user.id_user} 
+                            setClosePopup={(value) => setOpenDU({ ...openDU, [index]: value })}
+                        />}      
                     </div>
                 ))}
             </div>

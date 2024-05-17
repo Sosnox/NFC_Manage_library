@@ -14,19 +14,13 @@ interface AddGameCard {
     id_card: any;
     openPopup: any;
 }
+const endpoint = process.env.NEXT_PUBLIC_API_URL_AUTH 
 
 function CardEdit({ id_boardgame, search }: {id_boardgame : any, search : string}) {
     const [posts, setPosts] = useState<AddGameCard[]>([]);
     const [searchTerm, setSearchTerm] = useState<string>('');
-
-    useEffect(() => {
-        const fetchPosts = async () => {
-            const response = await fetch('http://210.246.215.173:8000/get_all_card_by_id_boardgame/?id_boardgame=' + id_boardgame);
-            const data = await response.json();
-            setPosts(data);
-        };
-        fetchPosts();
-    }, [id_boardgame]);
+    
+    const [openPopups, setOpenPopups] = useState<{ [key: number]: boolean }>({});
 
     useEffect(() => {
         setSearchTerm(search);
@@ -34,7 +28,7 @@ function CardEdit({ id_boardgame, search }: {id_boardgame : any, search : string
 
     useEffect(() => {
         const fetchPosts = async () => {
-            const response = await fetch('http://210.246.215.173:8000/get_all_card_by_id_boardgame/?id_boardgame=' + id_boardgame);
+            const response = await fetch(endpoint + '/get_all_card_by_id_boardgame/?id_boardgame=' + id_boardgame);
             const data = await response.json();
 
             if (searchTerm === '') {
@@ -47,9 +41,7 @@ function CardEdit({ id_boardgame, search }: {id_boardgame : any, search : string
             }
         };
         fetchPosts();
-    }, [id_boardgame, searchTerm]);
-
-    const [openPopups, setOpenPopups] = useState<{ [key: number]: boolean }>({});
+    }, [posts, searchTerm]);
 
     const handleOpenPopup = (index: number) => {
         setOpenPopups(prevState => ({
@@ -67,7 +59,7 @@ function CardEdit({ id_boardgame, search }: {id_boardgame : any, search : string
 
     const handleDeleteCard = async (id_card: any) => {
         try {
-            const response = await fetch(`http://210.246.215.173:8000/admin/delete_card/${id_card}`, {
+            const response = await fetch(endpoint + `/admin/delete_card/${id_card}`, {
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json'
@@ -93,11 +85,11 @@ function CardEdit({ id_boardgame, search }: {id_boardgame : any, search : string
                         
                         <div className="ml-[15px]"><input type="checkbox" /></div>
                         <div className=" col-span-2 justify-self-center">
-                            <span className="font-semibold text-[18px]">
+                            <span className="text-[18px]">
                                 {post.title_card}
                             </span>
                         </div>
-                        <button onClick={() => handleOpenPopup(index)} className="col-span-2 justify-self-center underline hover:text-red-600">Edit</button>
+                        <button onClick={() => handleOpenPopup(index)} className="col-span-2 justify-self-center bg-yellow-400 font-semibold text-white rounded-md pr-2 pl-2 hover:bg-gray-600 hover:text-black">Edit</button>
                         {openPopups[index] && (
                             <PopupEC
                                 title_card={post.title_card}

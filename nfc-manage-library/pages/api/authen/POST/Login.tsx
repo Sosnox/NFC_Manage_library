@@ -10,6 +10,7 @@ const loginAuth = async (data: User): Promise<any> => {
     formData.append('username', data.username);
     formData.append('password', data.password);
 
+
     try {
         const response = await fetch(endpoint, {
             method: "POST",
