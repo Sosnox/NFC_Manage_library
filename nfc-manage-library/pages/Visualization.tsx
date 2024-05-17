@@ -6,8 +6,8 @@ import BarChartPage from "./components/Chart/showBarchart";
 import BarChartCardPage from "./components/Chart/showBarchartCard";
 import CountCardScan from "./api/authen/POST/Dashboard/GET/CountCardScan";
 import DoughnutChart from "./components/Chart/DoughnutChart";
-import { TableData } from "./components/tableDashboard";
 import CircleReport from "./api/authen/POST/Dashboard/GET/CircleReport";
+import TableData from "./components/tableDashboard";
 
 
 
@@ -35,35 +35,26 @@ const Visualization = () => {
     }, [])
 
     return (
-        <div className="h-screen">
-        <div className="flex flex-col overflow-y-scroll h-[800px]">
+        <div className="w-full h-full">
             <label className="text-[48px] font-semibold">Visualization</label>
-            <div className="grid grid-cols-4 grid-rows-5 gap-6 ">
-                <div className="col-span-3 row-span-2 ">
-                    <div className="h-[500px] mb-10">
+            <div className="w-full h-[93%]">
+                <div className="grid grid-cols-3 grid-rows-4 gap-4 w-full h-full">
+                    <Card className="col-span-2 row-span-2">
                         <BarChartPage data={dataGraph} />
-                    </div>
-                </div>
-
-                <div className="row-span-2 col-start-4 row-start-1 mt-12">
-                    <TableData />
-                </div>
-
-                <div className="col-span-3 row-span-2 col-start-1 row-start-3 ">
-                    <div className="h-[500px]">
-                        <BarChartCardPage data={countScanCard} />
-                    </div>
-                </div>
-
-                <div className="row-span-2 col-start-4 row-start-3">
-                    <div className="h-[500px]">
+                    </Card>
+                    <Card className="row-span-1 col-start-3">
                         <DoughnutChart data={dataDounut} />
+                    </Card>
+                    <Card className="col-span-2 row-span-2 row-start-3">
+                        <BarChartCardPage data={countScanCard} />
+                    </Card>
+                    <div className="row-span-3 col-start-3 row-start-2">
+                        <TableData />
                     </div>
                 </div>
             </div>
-
-        </div>
         </div>
     )
 }
+
 export default Visualization;

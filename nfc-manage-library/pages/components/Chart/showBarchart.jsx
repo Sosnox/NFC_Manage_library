@@ -70,7 +70,7 @@ const BarChartPage = ({ data }) => {
 
 
   return (
-    <div className='w-full h-full'>
+    <div className='h-full w-full'>
       <br/>
       <Bar data={chartData} options={options} />
     </div>

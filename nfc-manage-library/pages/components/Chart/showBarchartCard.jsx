@@ -72,7 +72,7 @@ const BarChartCardPage = ({ data }) => {
 
 
   return (
-    <div className='w-full h-full'>
+    <div className='w-full h-full justify-center'>
       <Bar data={chartData} options={options} />
     </div>
   );

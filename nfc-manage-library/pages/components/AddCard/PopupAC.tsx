@@ -3,8 +3,9 @@ import { MdDriveFileRenameOutline } from "react-icons/md";
 import { BiDetail } from "react-icons/bi";
 import { MdOutlineAirplay } from "react-icons/md";
 import { SlPicture } from "react-icons/sl";
-import { TbDeviceGamepad } from "react-icons/tb";
-import { NotiFailCard, NotiPassCard } from '../PopupCheck/Notification';
+import NotiPassCard from '../PopupCheck/notifications/NotiPassCard';
+import NotiFailCard from '../PopupCheck/notifications/NotiFailCard';
+
 
 interface PopupACProps {
     setClosePopup: (value: boolean) => void;

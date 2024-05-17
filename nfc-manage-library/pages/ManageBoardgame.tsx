@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { NotiFail, NotiPass } from "./components/PopupCheck/Notification";
+import NotiFail from "./components/PopupCheck/notifications/NotiFail";
+import NotiPass from "./components/PopupCheck/notifications/NotiPass";
 
 const endpoint = process.env.NEXT_PUBLIC_API_URL_AUTH 
 
@@ -89,7 +90,7 @@ const ManageBoardgame = () => {
           <div className="mr-24">
             <input className="text-white" type="file" onChange={handleFileChange} />
             <div className="mt-6">
-              <img src={previewUrl} width={200} />
+              <img src={previewUrl} alt="Preview" width={200} />
             </div>
   
           </div>

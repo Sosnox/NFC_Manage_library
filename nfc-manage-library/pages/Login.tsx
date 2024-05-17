@@ -38,7 +38,7 @@ const Login = ({ onLogin, handleRole }: LoginComponentProps) => {
     }
 
     return (
-        <div className="flex w-screen h-screen justify-center items-center  bg-gray-900">
+        <div className="flex w-screen h-screen justify-center items-center ">
 
             <Card className="w-1/4 shadow-white shadow-md border ">
                 <div className="flex justify-center">
