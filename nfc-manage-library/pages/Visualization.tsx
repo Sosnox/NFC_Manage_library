@@ -18,15 +18,13 @@ const Visualization = () => {
 
     const FetchData = async () => {
         try {
+
             const data = await DashCircle();
             const countScanCard = await CountCardScan();
             const dataDou = await CircleReport();
             setDataDounut(dataDou);
             setCountScanCard(countScanCard);
             setDataGraph(data);
-            console.log(data, 'dataGraph')
-            // const data = await DashBar();
-            // const data = await DashPie();
 
         } catch (error) {
             console.error(error);
