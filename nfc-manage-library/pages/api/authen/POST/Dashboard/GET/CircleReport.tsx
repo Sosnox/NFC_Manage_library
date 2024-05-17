@@ -1,10 +1,11 @@
 
 
-const endpoint = process.env.NEXT_PUBLIC_API_URL_AUTH + '/dash/decendReport';
+const endpoint = process.env.NEXT_PUBLIC_API_URL_AUTH + '/dash/circleGraphReport';
 
-const dateReportDate = async (): Promise<any> => {
+const CircleReport = async (): Promise<any> => {
+
     try {
-        const response = await fetch(`${endpoint}`, {
+        const response = await fetch(endpoint, {
             method: "GET",
         });
         const responseData = await response.json();
@@ -17,4 +18,4 @@ const dateReportDate = async (): Promise<any> => {
     }
 }
 
-export default dateReportDate;
+export default CircleReport;
