@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { NotiFail, NotiPass } from "./components/PopupCheck/Notification";
 
+const endpoint = process.env.NEXT_PUBLIC_API_URL_AUTH 
+
 const ManageBoardgame = () => {
     const [selectedFile, setSelectedFile] = useState<File | null>(null);
     const [previewUrl, setPreviewUrl] = useState<string>("");
@@ -47,7 +49,7 @@ const ManageBoardgame = () => {
       }
   
       try {
-        const response = await fetch("http://210.246.215.173:8000/admin/post_boardgame/", {
+        const response = await fetch(endpoint + "/admin/post_boardgame/", {
           method: "POST",
           body: formData,
         });
@@ -80,12 +82,12 @@ const ManageBoardgame = () => {
         setNotification(<NotiFail />);
       }
     };
-  
+    
     return (
       <>
-        <div className="flex items-center justify-center bg-gray-900 p-4 rounded-xl text-white">
+        <div className="flex items-center justify-center bg-gray-900 p-4 rounded-xl  ">
           <div className="mr-24">
-            <input type="file" onChange={handleFileChange} />
+            <input className="text-white" type="file" onChange={handleFileChange} />
             <div className="mt-6">
               <img src={previewUrl} width={200} />
             </div>
@@ -94,40 +96,40 @@ const ManageBoardgame = () => {
   
           <div className="flex flex-col gap-1">
   
-            <label>ชื่อเกม :</label>
+            <label className="text-white">ชื่อเกม :</label>
             <input type="text" placeholder="Title of the Game" value={titleGame} onChange={(e) => setTitleGame(e.target.value)} className="form-info" />
   
             <div className='flex flex-wrap gap-5'>
               <div className='flex flex-col'>
-                <label>จำนวนผู้เล่นตั้งแต่</label>
+                <label className="text-white">จำนวนผู้เล่นตั้งแต่</label>
                 <input type="number" name="player_recommend_start" placeholder="Player" className="form-info-int" value={playerRecommendStart} onChange={(e) => setPlayerRecommendStart(parseInt(e.target.value))}></input>
               </div>
               <div className='flex flex-col'>
-                <label>ถึง</label>
+                <label className="text-white">ถึง</label>
                 <input type="number" name="player_recommend_end" placeholder="Player" className="form-info-int" value={playerRecommendEnd} onChange={(e) => setPlayerRecommendEnd(parseInt(e.target.value))}></input>
               </div>
             </div>
   
-            <label>อายุ :</label>
+            <label className="text-white">อายุ :</label>
             <input type="number" placeholder="Age Recommend" value={ageRecommend} onChange={(e) => setAgeRecommend(parseInt(e.target.value))} className="form-info-int" />
             
-            <label>เวลาที่ใช้เล่นเกม :</label>
+            <label className="text-white">เวลาที่ใช้เล่นเกม :</label>
             <input type="number" placeholder="Time Playing" value={timePlaying} onChange={(e) => setTimePlaying(parseInt(e.target.value))} className="form-info-int" />
   
-            <label>ประเภทเกม :</label>
+            <label className="text-white">ประเภทเกม :</label>
             <input type="text" placeholder="Type of Game" value={typeGame} onChange={(e) => setTypeGame(e.target.value)} className="form-info" />
   
-            <label>ลิงค์ :</label>
+            <label className="text-white">ลิงค์ :</label>
             <input type="text" placeholder="URL to a YouTube video" value={pathYoutube} onChange={(e) => setPathYoutube(e.target.value)} className="form-info" />
 
-            <label>เนื้อหา :</label>
+            <label  className="text-white">เนื้อหา :</label>
             <textarea placeholder="Details about the Game " value={detailGame} onChange={(e) => setDetailGame(e.target.value)} className="h-[200px] rounded-lg p-[10px]"></textarea>
   
             <div className="flex gap-2 mb-[20px]">
               <input type="checkbox" checked={recommend} onChange={(e) => setRecommend(e.target.checked)} />
-              <label className="">เกมแนะนำ</label>
+              <label className="text-white">เกมแนะนำ</label>
             </div>
-            <button type="button" className="p-4 rounded-lg bg-green-500 hover:bg-green-400 text-xl font-bold text-white border" onClick={handleSubmit}>
+            <button type="button" className="p-4 rounded-lg bg-green-500 hover:bg-green-400 text-xl font-bold text-white " onClick={handleSubmit}>
               Submit
             </button>
             {notification}

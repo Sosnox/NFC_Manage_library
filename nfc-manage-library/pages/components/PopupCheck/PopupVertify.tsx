@@ -1,17 +1,18 @@
 import React from "react";
 import { useRouter } from 'next/router'
 
-const endpoint = "http://210.246.215.173:8000/admin/delete_boardgame/";
+const endpoint = process.env.NEXT_PUBLIC_API_URL_AUTH 
+
 interface PopupVertifyProps {
     setClosePopup: (value: boolean) => void;
-    id_boardgame: any; // Add id_card to props
+    id_boardgame: any; 
 }
 
 export const PopupVertify: React.FC<PopupVertifyProps> = ({ setClosePopup, id_boardgame }) => {
     const router = useRouter()
     const handleDeleteCard = async () => {
         try {
-            const response = await fetch("http://210.246.215.173:8000/admin/delete_boardgame/" + id_boardgame, {
+            const response = await fetch(endpoint + "/admin/delete_boardgame/" + id_boardgame, {
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json'
@@ -19,7 +20,7 @@ export const PopupVertify: React.FC<PopupVertifyProps> = ({ setClosePopup, id_bo
             });
 
             if (response.ok) {
-                setClosePopup(false); // Close the popup
+                setClosePopup(false); 
                 router.push("/ManageCard")
                 console.log("Card deleted successfully!");
                 
@@ -37,19 +38,19 @@ export const PopupVertify: React.FC<PopupVertifyProps> = ({ setClosePopup, id_bo
 
     return (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 ">
-            <div className="bg-white p-8 rounded-lg w-[600px]">
+            <div className="bg-white p-8 rounded-lg w-[650px]">
                 <div className="flex item-center justify-center">
-                    <h1 className="font-bold text-4xl mt-4">ต้องการจะลบใช่หรือไม่ ?</h1>
+                    <h1 className="font-bold text-4xl mt-4">ต้องการจะลบ <span className="text-red-500">บอร์ดเกม</span> ใช่หรือไม่ ?</h1>
                 </div>
                 <div className="flex justify-evenly mt-16">
                     <button
-                        className="px-6 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600"
+                        className="px-6 py-2 bg-red-400 text-white rounded-lg hover:bg-red-500"
                         onClick={() => handleDeleteCard()} 
                     >
                         ยืนยัน
                     </button>
                     <button
-                        className="px-6 py-2 bg-gray-300 text-gray-700 rounded-lg hover:bg-gray-400"
+                        className="px-6 py-2  text-black rounded-lg "
                         onClick={handleClose}
                     >
                         ยกเลิก

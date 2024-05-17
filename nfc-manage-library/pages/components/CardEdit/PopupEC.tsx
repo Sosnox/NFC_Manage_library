@@ -1,15 +1,13 @@
-    import Image from 'next/image';
-    import logo from '@/styles/pictures/Logo.png';
-    import { ReactNode } from 'react';
+
     import { useState } from 'react';
 
-    import { NotiFailCard, NotiPassCard } from '../PopupCheck/Notification';
+    import { NotiFailCard, NotiPassEdit } from '../PopupCheck/Notification';
 
     import { MdDriveFileRenameOutline } from "react-icons/md";
     import { BiDetail } from "react-icons/bi";
     import { MdOutlineAirplay } from "react-icons/md";
     import { SlPicture } from "react-icons/sl";
-    import { TbDeviceGamepad } from "react-icons/tb";
+
 
     interface PopupAUProps {
         setClosePopup: (value: boolean) => void;
@@ -69,7 +67,7 @@
                 if (response.ok) {
                     console.log("Data submitted successfully!");
                     setSelectedFile(null);
-                    setNotification(<NotiPassCard/>)
+                    setNotification(<NotiPassEdit/>)
     
                 } else {
                     console.error("Submission failed!", response);
@@ -109,7 +107,7 @@
                         <textarea  
                         value={tickCard} 
                         placeholder='Trick' 
-                        className="px-4 py-2 border border-gray-300 rounded-lg w-3/4"
+                        className="px-4 py-2 border border-gray-300 rounded-lg w-3/4 h-[150px]"
                         onChange={(e) => setTickcard(e.target.value)}/>
                     </div>
                     
@@ -123,16 +121,7 @@
                         onChange={(e) => setDetailCard(e.target.value)}/>
                     </div>
 
-                    <div className='flex justify-between items-center mb-4'>
-                        <TbDeviceGamepad size={30}/>
-                        <label className="mr-2"> Boardgame </label>
-                        <input 
-                        value={id_boardgame} 
-                        type='text' 
-                        placeholder='Name' 
-                        className="px-4 py-2 border border-gray-300 rounded-lg w-3/4" />
-                    </div>
-                    
+               
                     <div className='flex justify-between items-center mt-14'>
                         
                         <SlPicture size={30}/>
@@ -146,7 +135,7 @@
                     
                     <div className="flex justify-evenly mt-16">
                         <button className="px-6 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600" onClick={handleEdit}>Save</button>
-                        <button className="px-6 py-2 bg-gray-300 text-gray-700 rounded-lg hover:bg-gray-400"  onClick={() => { handleClose(); window.location.reload()}}>Cancel</button>
+                        <button className="px-6 py-2 bg-gray-300 text-gray-700 rounded-lg hover:bg-gray-400"  onClick={handleClose}>Cancel</button>
                     </div>
                 </div>
                 {notification}

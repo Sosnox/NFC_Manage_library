@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { MdDriveFileRenameOutline } from "react-icons/md";
 import { BiDetail } from "react-icons/bi";
 import { MdOutlineAirplay } from "react-icons/md";
@@ -12,6 +12,7 @@ interface PopupACProps {
 }
 
 export const PopupAC = ({ setClosePopup, id_boardgame }: PopupACProps) => {
+
     const [titileCard, setTitileCard] = useState<string>('');
     const [detailCard, setDetailCard] = useState<string>('');
     const [tickcard, setTickcard] = useState<string>('');
@@ -105,7 +106,7 @@ export const PopupAC = ({ setClosePopup, id_boardgame }: PopupACProps) => {
 
                 <div className="flex justify-evenly mt-16">
                     <button className="px-6 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600" onClick={handleSubmit}>Submit</button>
-                    <button className="px-6 py-2 bg-gray-300 text-gray-700 rounded-lg hover:bg-gray-400" onClick={() => { handleClose(); window.location.reload(); }}
+                    <button className="px-6 py-2 bg-gray-300 text-gray-700 rounded-lg hover:bg-gray-400" onClick={() => { handleClose()}}
                     >Cancel</button>
                 </div>
                 {notification}

@@ -1,7 +1,5 @@
-import { Button } from "@nextui-org/react"
+import { Button, Link } from "@nextui-org/react"
 import Cookies from 'js-cookie';
-import Link from "next/link";
-
 
 import { BsClipboardData } from "react-icons/bs";
 import { SlGameController } from "react-icons/sl";
@@ -15,9 +13,14 @@ export const NavbarSuperadmin = () => {
     }
 
     return (
-        <div className="flex flex-col justify-between bg-gray-900 text-white p-4">
-            <div className="text-2xl">NFC Manage Library Superadmin</div>
-            <div className="mb-[200px]">
+        <div className="flex flex-col justify-between bg-gray-900 text-white p-4 h-screen">
+            <Link href="/">
+            <div className="bg-gray-800 rounded-lg m-4 mr-8 w-[200px] p-2 pl-4 ">
+                <div className="text-[20px] font-bold">NFC MANAGE LIBRARY</div>
+                <div>@Superadmin</div>
+            </div>
+            </Link>
+            <div>
                 <div className="flex flex-col space-y-5">
                 <Link className="mx-4 rounded-xl hover:bg-white hover:bg-opacity-20 p-4 pt-[20px] pb-[20px] font-semibold text-white text-[18px] gap-4" href="/">
                     <BsClipboardData size={25}/>Virtualization
@@ -31,9 +34,9 @@ export const NavbarSuperadmin = () => {
                     <IoMdAdd size={25}/> Add Boardgame
                 </Link>
 
-                <Link className="mx-4 rounded-xl hover:bg-white hover:bg-opacity-20 p-4 pt-[20px] pb-[20px]  font-semibold text-white text-[18px] gap-4" href="/ManageBoardgame">
+                <Link className="mx-4 rounded-xl hover:bg-white hover:bg-opacity-20 p-4 pt-[20px] pb-[20px]  font-semibold text-white text-[18px] gap-4" href="/ManageAdmin">
                     <FiUsers size={25}/>Manage Admin
-                </Link>
+                </Link> 
                 </div>
             </div>
             <div className="grid justify-self-center">

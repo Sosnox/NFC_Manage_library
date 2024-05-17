@@ -36,7 +36,6 @@ function AddGameCard() {
 
         } catch (error) {
             console.error('Error fetching data:', error);
-            // Optionally, you can set an empty array for posts if fetching fails
             setPosts([]);
         }
     };
@@ -44,9 +43,7 @@ function AddGameCard() {
 
     useEffect(() => {
         fetchPosts();
-    }, []);
-
-    console.log(posts)
+    }, [posts]);
 
     return (
         <div className='grid grid-cols-5 gap-12 mb-14 '>

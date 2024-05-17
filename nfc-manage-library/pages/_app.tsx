@@ -51,18 +51,18 @@ export default function App({ Component, pageProps }: AppProps) {
       {!isLoggedIn ? (
         <Login onLogin={handleLogin} handleRole={handleRole} />
       ) : (
-        <NextUIProvider className="flex flex-row w-full min-h-screen">
+        <NextUIProvider className="flex flex-row w-full h-screen">
           {role === 'super_admin' ? (
             <>
               <NavbarSuperadmin />
-              <main className="border-2 w-full m-16">
+              <main className="w-full m-16">
                 <Component {...pageProps} />
               </main>
             </>
           ) : (
             <>
               <Navbar />
-              <main className="border-2 w-full m-16">
+              <main className=" w-full m-16">
                 <Component {...pageProps} />
               </main>
             </>

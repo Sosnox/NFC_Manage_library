@@ -2,7 +2,8 @@ import { Button, Card, CardBody, CardFooter, Input } from "@nextui-org/react";
 import { useState } from "react";
 import loginAuth from "./api/authen/POST/Login";
 import Cookies from 'js-cookie';
-
+import logo from '../styles/Logo.png'
+import Image from "next/image";
 
 interface LoginProps {
     username: string;
@@ -37,32 +38,44 @@ const Login = ({ onLogin, handleRole }: LoginComponentProps) => {
     }
 
     return (
-        <div className="flex w-screen h-screen justify-center items-center">
-            <Card className="w-1/4">
+        <div className="flex w-screen h-screen justify-center items-center  bg-gray-900">
+
+            <Card className="w-1/4 shadow-white shadow-md border ">
+                <div className="flex justify-center">
+                <Image src={logo} alt="logo" width={200}/>
+                </div>
                 <CardBody className="">
-                    <label>Login</label>
+                    <div>
                     <Input
                         key="outside"
-                        label="Username"
+                        label="Enter Username"
                         labelPlacement="outside"
                         onChange={(e) => setLoginData(prevState => ({
                             ...prevState,
                             username: e.target.value,
                         }))}
                     />
+                    </div>
+
+                    <div className="mt-4">
                     <Input
                         key="outside"
-                        label="Password"
+                        label="Enter Password"
                         labelPlacement="outside"
                         onChange={(e) => setLoginData(prevState => ({
                             ...prevState,
                             password: e.target.value,
                         }))}
                     />
+                    </div>
                 </CardBody>
+                
                 <CardFooter>
-                    <Button className=" text-white font-bold py-2 px-4 rounded" onClick={handleLogin}>Login</Button>
+                <div className="flex items-center justify-center">
+                    <Button className=" text-white bg-gray-900 font-bold p-6 pl-12 pr-12  rounded" onClick={handleLogin}>Login</Button>
+                </div>
                 </CardFooter>
+
             </Card>
 
         </div>
