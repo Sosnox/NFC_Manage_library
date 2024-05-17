@@ -35,9 +35,10 @@ const Visualization = () => {
     }, [])
 
     return (
-        <div className="flex flex-col w-full overflow-y-scroll h-[800px]">
+        <div className="h-screen">
+        <div className="flex flex-col overflow-y-scroll h-[800px]">
             <label className="text-[48px] font-semibold">Visualization</label>
-            <div className="grid grid-cols-4 grid-rows-5 gap-6 m-6">
+            <div className="grid grid-cols-4 grid-rows-5 gap-6 ">
                 <div className="col-span-3 row-span-2 ">
                     <div className="h-[500px] mb-10">
                         <BarChartPage data={dataGraph} />
@@ -61,6 +62,7 @@ const Visualization = () => {
                 </div>
             </div>
 
+        </div>
         </div>
     )
 }
