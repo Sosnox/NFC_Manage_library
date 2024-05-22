@@ -10,15 +10,16 @@ const ManageBoardgame = () => {
   const [titleGame, setTitleGame] = useState<string>('');
   const [detailGame, setDetailGame] = useState<string>('');
   const [pathYoutube, setPathYoutube] = useState<string>('');
-  const [playerRecommendStart, setPlayerRecommendStart] = useState<number>(0);
-  const [playerRecommendEnd, setPlayerRecommendEnd] = useState<number>(0);
+  const [playerRecommendStart, setPlayerRecommendStart] = useState<string>('');
+  const [playerRecommendEnd, setPlayerRecommendEnd] = useState<string>('');
   const [recommend, setRecommend] = useState<boolean>(false);
-  const [ageRecommend, setAgeRecommend] = useState<number>(0);
-  const [timePlaying, setTimePlaying] = useState<number>(0);
+  const [ageRecommend, setAgeRecommend] = useState<string>('');
+  const [timePlaying, setTimePlaying] = useState<string>('');
   const [typeGame, setTypeGame] = useState<string>('');
   const [countScanBoardgame, setCountScanBoardgame] = useState<number>(0);
 
   const [notification, setNotification] = useState<JSX.Element | null>(null);
+  const [selectInput, setSelectInput] = useState(true)
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files ? e.target.files[0] : null;
@@ -36,12 +37,13 @@ const ManageBoardgame = () => {
     formData.append("title_game", titleGame);
     formData.append("detail_game", detailGame);
     formData.append("path_youtube", pathYoutube);
-    formData.append("player_recommend_start", String(playerRecommendStart));
-    formData.append("player_recommend_end", String(playerRecommendEnd));
+    formData.append("player_recommend_start", playerRecommendStart);
+    formData.append("player_recommend_end", playerRecommendEnd);
     formData.append("recommend", String(recommend));
-    formData.append("age_recommend", String(ageRecommend));
-    formData.append("time_playing", String(timePlaying));
+    formData.append("age_recommend", ageRecommend);
+    formData.append("time_playing", timePlaying);
     formData.append("type_game", typeGame);
+
     formData.append("count_scan_boardgame", String(countScanBoardgame));
 
     if (selectedFile !== null) {
@@ -70,17 +72,26 @@ const ManageBoardgame = () => {
 
   const resetForm = () => {
     setSelectedFile(null);
-    setPreviewUrl("");
+    setPreviewUrl('');
     setTitleGame('');
     setDetailGame('');
     setPathYoutube('');
-    setPlayerRecommendStart(0);
-    setPlayerRecommendEnd(0);
+    setPlayerRecommendStart('');
+    setPlayerRecommendEnd('');
     setRecommend(false);
-    setAgeRecommend(0);
-    setTimePlaying(0);
+    setAgeRecommend('');
+    setTimePlaying('');
     setTypeGame('');
     setCountScanBoardgame(0);
+  };
+
+  const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const value = e.target.value;
+    if (value === 'อื่นๆ') {
+      setSelectInput(false);
+    } else {
+      setTypeGame(value);
+    }
   };
 
   return (
@@ -111,7 +122,7 @@ const ManageBoardgame = () => {
               placeholder="Player"
               className="form-info-int"
               value={playerRecommendStart}
-              onChange={(e) => setPlayerRecommendStart(parseInt(e.target.value))}
+              onChange={(e) => setPlayerRecommendStart(e.target.value)}
             />
           </div>
           <div className="flex flex-col">
@@ -122,37 +133,56 @@ const ManageBoardgame = () => {
               placeholder="Player"
               className="form-info-int"
               value={playerRecommendEnd}
-              onChange={(e) => setPlayerRecommendEnd(parseInt(e.target.value))}
+              onChange={(e) => setPlayerRecommendEnd(e.target.value)}
             />
           </div>
         </div>
 
-        <label className="text-white">อายุ :</label>
-        <input
-          type="number"
-          placeholder="Age Recommend"
-          value={ageRecommend}
-          onChange={(e) => setAgeRecommend(parseInt(e.target.value))}
-          className="form-info-int"
-        />
-
-        <label className="text-white">เวลาที่ใช้เล่นเกม :</label>
-        <input
-          type="number"
-          placeholder="Time Playing"
+        <label className="text-white">เวลา : </label>
+        <select
+          name="time_playing"
           value={timePlaying}
-          onChange={(e) => setTimePlaying(parseInt(e.target.value))}
-          className="form-info-int"
-        />
+          className="px-4 py-2 border border-gray-300 rounded-lg w-3/4"
+        >
+
+          <option value="15 นาที - 30 นาที">15 นาที - 30 นาที</option>
+          <option value="30 นาที - 1 ชั่วโมง">30 นาที - 1 ชั่วโมง</option>
+          <option value="1 ชั่วโมง - 2 ชั่วโมง">1 ชั่วโมง - 2 ชั่วโมง</option>
+          <option value="2 ชั่วโมงขึ้นไป">2 ชั่วโมงขึ้นไป</option>  
+        </select>
+
+        <label className="text-white">อายุ :</label>
+        <select
+          name="time_playing"
+          value={ageRecommend}
+          className="px-4 py-2 border border-gray-300 rounded-lg w-3/4"
+        >
+
+          <option value="3">อายุ 3 ปีขึ้นไป</option>
+          <option value="7">อายุ 7 ปีขึ้นไป</option>
+          <option value="13">อายุ 13 ปีขึ้นไป</option>
+          <option value="18">อายุ 18 ปีขึ้นไป</option>  
+        </select>
 
         <label className="text-white">ประเภทเกม :</label>
-        <input
-          type="text"
-          placeholder="Type of Game"
+        {selectInput ? (
+        <select
+          name="role"
           value={typeGame}
-          onChange={(e) => setTypeGame(e.target.value)}
-          className="form-info"
-        />
+          className="px-4 py-2 border border-gray-300 rounded-lg w-3/4"
+          onChange={handleSelectChange}
+        >
+
+          <option value="ครอบครัว(Family)">ครอบครัว(Family)</option>
+          <option value="ปาร์ตี้(Party)">ปาร์ตี้(Party)</option>
+          <option value="วางแผน(Plan)">วางแผน(Plan)</option>
+          <option value="เด็ก(Child)">เด็ก(Child)</option>
+          <option value="บลัฟ(ฺBluffing)">บลัฟ(ฺBluffing)</option>
+          <option value="อื่นๆ">อื่นๆ</option>
+        </select>
+      ) : (
+        <input  className="px-4 py-2 border border-gray-300 rounded-lg w-3/4" />
+      )}
 
         <label className="text-white">ลิงค์ :</label>
         <input
@@ -175,7 +205,7 @@ const ManageBoardgame = () => {
         <select
           value={recommend ? "true" : "false"}
           onChange={(e) => setRecommend(e.target.value === "true")}
-          className="p-2 pr-4 pl-4 w-[150px] rounded-lg"
+          className="p-2 pl-4 w-[150px] rounded-lg"
         >
           <option value="ture">เป็น</option>
           <option value="false">ไม่เป็น</option>
